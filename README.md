@@ -1,2 +1,6 @@
 # LAB08POOI-2310724
-Integrantes: //SUS NOMBRES PIBITOS
+Integrantes:
+-David Gupioc
+-Jairo Inga
+-Rodrigo Llontop
+-Sebastian Lozano
