@@ -1,11 +1,113 @@
-
 package banco;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
+/**
+ *
+ * @author Us
+ */
+public class CuentaBancaria {
+    
+    private String numeroCuenta;
+    private String descripcionCuenta;
+    private String cuentaCCI;
+    private double saldoDisponile = 0; 
+    private List<MovimientoCuenta> movimientos = new ArrayList<>();
+    private String estado; // Restringido, Bloqueado y Activo
+    
+    public CuentaBancaria(String numeroCuenta, String descripcionCuenta, String cuentaCCI, String estado) {
+        this.numeroCuenta = numeroCuenta;
+        this.descripcionCuenta = descripcionCuenta;
+        this.cuentaCCI = cuentaCCI;
+        this.estado = estado;
+    }
 
-public class Cliente {
+    public String getNumeroCuenta() {
+        return numeroCuenta;
+    }
+
+    public void setNumeroCuenta(String numeroCuenta) {
+        this.numeroCuenta = numeroCuenta;
+    }
+
+    public String getDescripcionCuenta() {
+        return descripcionCuenta;
+    }
+
+    public void setDescripcionCuenta(String descripcionCuenta) {
+        this.descripcionCuenta = descripcionCuenta;
+    }
+
+    public String getCuentaCCI() {
+        return cuentaCCI;
+    }
+
+    public void setCuentaCCI(String cuentaCCI) {
+        this.cuentaCCI = cuentaCCI;
+    }
+
+    public double getSaldoDisponile() {
+        return saldoDisponile;
+    }
+
+    public void setSaldoDisponile(double saldoDisponile) {
+        this.saldoDisponile = saldoDisponile;
+    }
+
+    public List<MovimientoCuenta> getMovimientos() {
+        return movimientos;
+    }
+
+    public void setMovimientos(List<MovimientoCuenta> movimientos) {
+        this.movimientos = movimientos;
+    }
+
+    public String getEstado() {
+        return estado;
+    }
+
+    public void setEstado(String estado) {
+        this.estado = estado;
+    }
+
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String[] args) {
+        // TODO code application logic here
+    }
+}
+
+class CuentaAhorro extends CuentaBancaria {
+    private double tasaInteresAnual;
+    private String beneficios;
+
+    public CuentaAhorro(double tasaInteresAnual, String beneficios, String numeroCuenta, String descripcionCuenta, String cuentaCCI, String estado) {
+        super(numeroCuenta, descripcionCuenta, cuentaCCI, estado);
+        this.tasaInteresAnual = 0.03;
+        this.beneficios = beneficios;
+    }
+
+    public double getTasaInteresAnual() {
+        return tasaInteresAnual;
+    }
+
+    public void setTasaInteresAnual(double tasaInteresAnual) {
+        this.tasaInteresAnual = tasaInteresAnual;
+    }
+
+    public String getBeneficios() {
+        return beneficios;
+    }
+
+    public void setBeneficios(String beneficios) {
+        this.beneficios = beneficios;
+    }
+}
+
+class Cliente {
     private String idCliente;
     private String nombre;
     private String apellido;
@@ -87,186 +189,6 @@ public class Cliente {
     public void setEventoBancarios(List<EventoBancario> eventoBancarios) {
         this.eventoBancarios = eventoBancarios;
     }
-    
-public class CuentaAhorro extends CuentaBancaria {
-    private double tasaInteresAnual;
-    private String beneficios;
-
-    public CuentaAhorro(double tasaInteresAnual, String beneficios, String numeroCuenta, String descripcionCuenta, String cuentaCCI, String estado) {
-        super(numeroCuenta, descripcionCuenta, cuentaCCI, estado);
-        this.tasaInteresAnual = 0.03;
-        this.beneficios = beneficios;
-        
-    }
-
-    public double getTasaInteresAnual() {
-        return tasaInteresAnual;
-    }
-
-    public void setTasaInteresAnual(double tasaInteresAnual) {
-        this.tasaInteresAnual = tasaInteresAnual;
-    }
-
-    public String getBeneficios() {
-        return beneficios;
-    }
-
-    public void setBeneficios(String beneficios) {
-        this.beneficios = beneficios;
-    }
 }
 
-
-public class CuentaCorriente extends CuentaBancaria{
-    private double tasaInteresAnual;
-    private double ComisionFija;
-    private int maxRetiro;
-
-    public CuentaCorriente(double tasaInteresAnual, double ComisionFija, int maxRetiro, String numeroCuenta, String descripcionCuenta, String cuentaCCI, String estado) {
-        super(numeroCuenta, descripcionCuenta, cuentaCCI, estado);
-        this.tasaInteresAnual = 0.02;
-        this.ComisionFija = 2.0;
-        this.maxRetiro = maxRetiro;
-        
-    } 
-
-    public double getTasaInteresAnual() {
-        return tasaInteresAnual;
-    }
-
-    public void setTasaInteresAnual(double tasaInteresAnual) {
-        this.tasaInteresAnual = tasaInteresAnual;
-    }
-
-    public double getComisionFija() {
-        return ComisionFija;
-    }
-
-    public void setComisionFija(double ComisionFija) {
-        this.ComisionFija = ComisionFija;
-    }
-
-    public int getMaxRetiro() {
-        return maxRetiro;
-    }
-
-    public void setMaxRetiro(int maxRetiro) {
-        this.maxRetiro = maxRetiro;
-    }
-}
-
-    
-public class CuentaCTS extends CuentaBancaria{
-    private double tasaInteresAnial;
-    private int puntos;
-
-    public CuentaCTS(double tasaInteresAnial, int puntos, String numeroCuenta, String descripcionCuenta, String cuentaCCI, String estado) {
-        super(numeroCuenta, descripcionCuenta, cuentaCCI, estado);
-        this.tasaInteresAnial = 0.07;
-        this.puntos = puntos;
-        
-    }
-
-    public double getTasaInteresAnial() {
-        return tasaInteresAnial;
-    }
-
-    public void setTasaInteresAnial(double tasaInteresAnial) {
-        this.tasaInteresAnial = tasaInteresAnial;
-    }
-
-    public int getPuntos() {
-        return puntos;
-    }
-
-    public void setPuntos(int puntos) {
-        this.puntos = puntos;
-    }
-    
-   
-}
-
-public class CuentaFree{
-    private boolean numIlimitado;
-
-    public CuentaFree(boolean numIlimitado) {
-        this.numIlimitado = numIlimitado;
-    }
-
-    public boolean isNumIlimitado() {
-        return numIlimitado;
-    }
-
-    public void setNumIlimitado(boolean numIlimitado) {
-        this.numIlimitado = numIlimitado;
-    }
-
-    
-public class CuentaSueldo {
-    private String nombreEmpresa;
-
-    public CuentaSueldo(String nombreEmpresa) {
-        this.nombreEmpresa = nombreEmpresa;
-    }
-
-    public String getNombreEmpresa() {
-        return nombreEmpresa;
-    }
-
-    public void setNombreEmpresa(String nombreEmpresa) {
-        this.nombreEmpresa = nombreEmpresa;
-    }
-}
-    
-public class EventoBancario {
-    private Date fecha;
-    private String tituloEvento;
-    private String descripcion;
-
-    public EventoBancario(Date fecha, String tituloEvento, String descripcion) {
-        this.fecha = fecha;
-        this.tituloEvento = tituloEvento;
-        this.descripcion = descripcion;
-    }
-
-    public Date getFecha() {
-        return fecha;
-    }
-
-    public void setFecha(Date fecha) {
-        this.fecha = fecha;
-    }
-
-    public String getTituloEvento() {
-        return tituloEvento;
-    }
-
-    public void setTituloEvento(String tituloEvento) {
-        this.tituloEvento = tituloEvento;
-    }
-
-    public String getDescripcion() {
-        return descripcion;
-    }
-
-    public void setDescripcion(String descripcion) {
-        this.descripcion = descripcion;
-    }
-    package banco;
-
-
-public class MovimientoCuenta {
-    private String numOperacion;
-    private String descripcion;
-    private Date fecha;
-    private double importe;
-    private String tipoOperacion;
-
-    public MovimientoCuenta(String numOperacion, String descripcion, Date fecha, double importe, String tipoOperacion) {
-        this.numOperacion = numOperacion;
-        this.descripcion = descripcion;
-        this.fecha = fecha;
-        this.importe = importe;
-        this.tipoOperacion = tipoOperacion;
-    }
 
