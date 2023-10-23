@@ -1,0 +1,124 @@
+package banco1;
+
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+
+public class Cliente {
+    private String idCliente;
+    private String nombre;
+    private String apellido;
+    private String direccion;
+    private int telefono;
+    private int dni;
+    private List<CuentaBancaria> cuentas = new ArrayList<>();
+    private List<EventoBancario> eventoBancarios = new ArrayList<>();
+
+    public Cliente(String idCliente, String nombre, String apellido, String direccion, int telefono, int dni) {
+        this.idCliente = idCliente;
+        this.nombre = nombre;
+        this.apellido = apellido;
+        this.direccion = direccion;
+        this.telefono = telefono;
+        this.dni = dni;
+    }
+
+    public String getIdCliente() {
+        return idCliente;
+    }
+
+    public void setIdCliente(String idCliente) {
+        this.idCliente = idCliente;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public String getApellido() {
+        return apellido;
+    }
+
+    public void setApellido(String apellido) {
+        this.apellido = apellido;
+    }
+
+    public String getDireccion() {
+        return direccion;
+    }
+
+    public void setDireccion(String direccion) {
+        this.direccion = direccion;
+    }
+
+    public int getTelefono() {
+        return telefono;
+    }
+
+    public void setTelefono(int telefono) {
+        this.telefono = telefono;
+    }
+
+    public int getDni() {
+        return dni;
+    }
+
+    public void setDni(int dni) {
+        this.dni = dni;
+    }
+
+    public List<CuentaBancaria> getCuentas() {
+        return cuentas;
+    }
+
+    public void setCuentas(List<CuentaBancaria> cuentas) {
+        this.cuentas = cuentas;
+    }
+
+    public List<EventoBancario> getEventoBancarios() {
+        return eventoBancarios;
+    }
+
+    public void setEventoBancarios(List<EventoBancario> eventoBancarios) {
+        this.eventoBancarios = eventoBancarios;
+    }
+
+    public static void main(String[] args) {
+        // Crear cuentas de ahorros
+        CuentaSueldo cuentaSueldo = new CuentaSueldo("EmpresaXYZ", 1500.00);
+        CuentaFree cuentaFree = new CuentaFree(true, 20000.00);
+
+        // Crear cuentas corrientes
+        CuentaCorriente cuentaCorriente1 = new CuentaCorriente(0.02, 2.0, 5, "123456", "Cuenta Corriente 1", "123-ABC", "Activa");
+        CuentaCorriente cuentaCorriente2 = new CuentaCorriente(0.02, 2.0, 5, "789012", "Cuenta Corriente 2", "456-DEF", "Activa");
+
+        // Crear cuenta CTS
+        CuentaCTS cuentaCTS = new CuentaCTS(0.07, 50000, "789ABC", "CTS Account", "789-CTS", "Activa");
+
+        // Asignar cuentas al cliente
+        Cliente cliente = new Cliente("123456", "John", "Doe", "123 Main St", 123456789, 123456789);
+        cliente.getCuentas().add(cuentaSueldo);
+        cliente.getCuentas().add(cuentaFree);
+        cliente.getCuentas().add(cuentaCorriente1);
+        cliente.getCuentas().add(cuentaCorriente2);
+        cliente.getCuentas().add(cuentaCTS);
+
+        // Asistir a eventos bancarios
+        cliente.getEventoBancarios().add(new EventoBancario(new Date(), "Conferencia", "Evento sobre estrategias de ahorro"));
+        cliente.getEventoBancarios().add(new EventoBancario(new Date(), "Seminario", "Seminario sobre inversiones"));
+
+        // Calcular saldos de cuentas de ahorros por todo el año
+        for (int i = 1; i <= 12; i++) {
+            cuentaSueldo.calcularInteresMensual();
+            cuentaFree.calcularInteresMensual();
+        }
+
+        // Imprimir saldo final de cuentas de ahorros
+        System.out.println("Saldo final de Cuenta Sueldo: " + cuentaSueldo.getSaldoDisponible());
+        System.out.println("Saldo final de Cuenta Free: " + cuentaFree.getSaldoDisponible());
+    }
+}
